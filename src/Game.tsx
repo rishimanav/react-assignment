@@ -60,6 +60,7 @@ class Game extends React.Component<{}, GameState> {
     };
   }
 
+  //function that calculates the winner
   static calculateWinner(squares: string[]): string | null {
     //combination of indices for all possible wins
     const lines = [
@@ -123,7 +124,7 @@ class Game extends React.Component<{}, GameState> {
   }
 }
 
-//function that calculates the winner
+
 
 
 export default Game;

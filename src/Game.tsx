@@ -51,7 +51,7 @@ interface GameState {
 }
 
 class Game extends React.Component<{}, GameState> {
-  //we create a constructor that initalizes an empty array
+  //we create a constructor that initializes an empty array
   constructor(props: {}) {
     super(props);
     this.state = {
@@ -123,8 +123,5 @@ class Game extends React.Component<{}, GameState> {
 
   }
 }
-
-
-
 
 export default Game;

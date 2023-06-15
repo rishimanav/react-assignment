@@ -130,7 +130,7 @@ class Game extends React.Component<{},GameState> {
     }
 
     return (
-      <div className="game container-fluid mx-3 my-3">
+      <div className="game container-fluid my-3">
         
         {/* Game board */}
         <div className="game-board container ">

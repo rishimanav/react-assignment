@@ -6,7 +6,7 @@ export default class Navbar extends React.Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container-fluid">
-            <a className="navbar-brand" href="/">Navbar</a>
+            <a className="navbar-brand" href="/">React-Assignment</a>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
@@ -16,22 +16,21 @@ export default class Navbar extends React.Component {
                     <Link className="nav-link" to="/">Home</Link>
                 </li>
                 <li className="nav-item">
+                    <Link className="nav-link" to="/about">About Me</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/contact">Contact Me</Link>
+                </li>
+                <li className="nav-item">
                     <Link className="nav-link" to="/game">Game</Link>
                 </li>
-                <li className="nav-item">
-                    <Link className="nav-link" to="/about">About</Link>
-                </li>
-                <li className="nav-item">
-                    <Link className="nav-link" to="/contact">Contact</Link>
-                </li>
-                <li className="nav-item">
-                    <Link className="nav-link" to="/login">Login</Link>
-                </li>
-              </ul>
-              <form className="d-flex" role="search">
-                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                <button className="btn btn-outline-success" type="submit">Search</button>
-              </form>
+              </ul>   
+            </div>
+            <div className="ms-auto d-flex justify-content-around">
+                <div className='text-white my-2 me-4'>Username</div>
+                <Link className="nav-link" to="/login">
+                  <button className="btn btn-outline-danger">Logout</button>
+                </Link>
             </div>
           </div>
       </nav>

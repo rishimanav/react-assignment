@@ -4,31 +4,34 @@ import {createBrowserRouter,RouterProvider,} from "react-router-dom";
 import './index.css';
 
 import Home from './pages/Home';
-import Game from './Game';
+import Game from './pages/Game';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import About from './pages/About';
-import Wrapper from './Wrapper';
 import Navbar from './components/Navbar';
 
 
 //created a router object
 const router = createBrowserRouter([
   {
-    path: "react-assignment/home",
+    path: "/",
     element: <><Navbar/><Home /></>,
   },
   {
-    path: "react-assignment/game",
+    path: "/game",
     element: <><Navbar/><Game /></>,
   },
   {
-    path: "react-assignment/about",
+    path: "/about",
     element: <><Navbar/><About /></>,
   },
   {
-    path:"react-assignment/",
+    path:"/login",
     element:<Login/>
+  },
+  {
+    path:"/contact",
+    element: <><Navbar/><Contact /></>
   }
 ]);
 

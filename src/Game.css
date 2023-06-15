@@ -8,12 +8,6 @@
     border-radius: 12px;
 }
 
-.board-row{
-    margin-top: 2px;
-    display:flex;
-    gap: 2px;
-}
-
 .result{
     margin-top:10px;
     margin-left:5px;

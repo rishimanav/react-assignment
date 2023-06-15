@@ -1,6 +1,7 @@
 import React from "react";
 import "./Game.css";
 
+
 //class square that with cell value and onclick properties
 class Square extends React.Component<{value:string,onClick:()=>void}> {
   render() {
@@ -23,19 +24,19 @@ class Board extends React.Component<BoardProps> {
     return (
       <div>
         {/* row 1 that is flex */}
-        <div className="board-row">
+        <div className="board-row d-flex gap-1 mt-2 justify-content-center">
           <Square value={this.props.squares[0]} onClick={() => this.props.onClick(0)} />
           <Square value={this.props.squares[1]} onClick={() => this.props.onClick(1)} />
           <Square value={this.props.squares[2]} onClick={() => this.props.onClick(2)} />
         </div>
         {/* row 2 that is flex */}
-        <div className="board-row">
+        <div className="board-row d-flex gap-1 mt-2 justify-content-center">
           <Square value={this.props.squares[3]} onClick={() => this.props.onClick(3)} />
           <Square value={this.props.squares[4]} onClick={() => this.props.onClick(4)} />
           <Square value={this.props.squares[5]} onClick={() => this.props.onClick(5)} />
         </div>
         {/* row 3 that is flex */}
-        <div className="board-row">
+        <div className="board-row d-flex gap-1 mt-2 justify-content-center">
           <Square value={this.props.squares[6]} onClick={() => this.props.onClick(6)} />
           <Square value={this.props.squares[7]} onClick={() => this.props.onClick(7)} />
           <Square value={this.props.squares[8]} onClick={() => this.props.onClick(8)} />
@@ -50,14 +51,16 @@ interface GameState {
   xIsNext: boolean;
 }
 
-class Game extends React.Component<{}, GameState> {
+class Game extends React.Component<{},GameState> {
   //we create a constructor that initializes an empty array
   constructor(props: {}) {
     super(props);
     this.state = {
       squares: Array(9).fill(""),
-      xIsNext: true,
+      xIsNext: true
     };
+    this.reset=this.reset.bind(this);
+    this.handleClick=this.handleClick.bind(this);
   }
 
   //function that calculates the winner
@@ -84,6 +87,15 @@ class Game extends React.Component<{}, GameState> {
     return null;
   }
 
+  //resets the board to null
+  reset(){
+    const fill_null=["","","","","","","","",""];
+    this.setState({
+      squares: fill_null,
+      xIsNext: true
+    });
+  }
+
   handleClick(i: number) {
     const squares = this.state.squares.slice();
     if (Game.calculateWinner(squares) || squares[i]) {
@@ -108,16 +120,25 @@ class Game extends React.Component<{}, GameState> {
     }
 
     return (
-      <div className="game container mx-3 my-3">
-        <div className="game-board">
+      <div className="game container-fluid mx-3 my-3">
+        
+        <div className="game-board container ">
           <Board
             squares={this.state.squares}
             onClick={(i: number) => this.handleClick(i)}
           />
         </div>
-        <div className="result">
+        
+        <div className="result text-center">
           {status}
         </div>
+
+        <div className="container text-center mt-2">
+          <div className="btn btn-warning" onClick={this.reset}>
+            Reset
+          </div>
+        </div>
+          
       </div>
     );
 

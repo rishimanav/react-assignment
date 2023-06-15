@@ -23,19 +23,19 @@ class Board extends React.Component<BoardProps> {
     //renders 
     return (
       <div>
-        {/* row 1 that is flex */}
+        {/* row 1 */}
         <div className="board-row d-flex gap-1 mt-2 justify-content-center">
           <Square value={this.props.squares[0]} onClick={() => this.props.onClick(0)} />
           <Square value={this.props.squares[1]} onClick={() => this.props.onClick(1)} />
           <Square value={this.props.squares[2]} onClick={() => this.props.onClick(2)} />
         </div>
-        {/* row 2 that is flex */}
+        {/* row 2 */}
         <div className="board-row d-flex gap-1 mt-2 justify-content-center">
           <Square value={this.props.squares[3]} onClick={() => this.props.onClick(3)} />
           <Square value={this.props.squares[4]} onClick={() => this.props.onClick(4)} />
           <Square value={this.props.squares[5]} onClick={() => this.props.onClick(5)} />
         </div>
-        {/* row 3 that is flex */}
+        {/* row 3 */}
         <div className="board-row d-flex gap-1 mt-2 justify-content-center">
           <Square value={this.props.squares[6]} onClick={() => this.props.onClick(6)} />
           <Square value={this.props.squares[7]} onClick={() => this.props.onClick(7)} />
@@ -46,6 +46,7 @@ class Board extends React.Component<BoardProps> {
   }
 }
 
+//defining GameState
 interface GameState {
   squares: string[];
   xIsNext: boolean;
@@ -59,8 +60,10 @@ class Game extends React.Component<{},GameState> {
       squares: Array(9).fill(""),
       xIsNext: true
     };
-    this.reset=this.reset.bind(this);
-    this.handleClick=this.handleClick.bind(this);
+
+    //binding the reset and the handleClick methods
+    // this.reset=this.reset.bind(this);
+    // this.handleClick=this.handleClick.bind(this);
   }
 
   //function that calculates the winner
@@ -89,7 +92,7 @@ class Game extends React.Component<{},GameState> {
 
   //resets the board to null
   reset(){
-    const fill_null=["","","","","","","","",""];
+    const fill_null=Array(9).fill("");
     this.setState({
       squares: fill_null,
       xIsNext: true
@@ -97,11 +100,18 @@ class Game extends React.Component<{},GameState> {
   }
 
   handleClick(i: number) {
+    //made a copy of the squares string[]
     const squares = this.state.squares.slice();
+
+    //if the game has already been won we need to stop printing X or O
     if (Game.calculateWinner(squares) || squares[i]) {
       return;
     }
+
+    //else
+    //we set what must be printed on pressing the button
     squares[i] = this.state.xIsNext ? "X" : "O";
+    //and update the state of Game
     this.setState({
       squares: squares,
       xIsNext: !this.state.xIsNext,
@@ -122,22 +132,25 @@ class Game extends React.Component<{},GameState> {
     return (
       <div className="game container-fluid mx-3 my-3">
         
+        {/* Game board */}
         <div className="game-board container ">
           <Board
             squares={this.state.squares}
             onClick={(i: number) => this.handleClick(i)}
           />
         </div>
-        
+
+        {/* displays result */}
         <div className="result text-center">
-          {status}
+            {status}
         </div>
 
+        {/* reset button */}
         <div className="container text-center mt-2">
-          <div className="btn btn-warning" onClick={this.reset}>
-            Reset
-          </div>
-        </div>
+            <div className="btn btn-warning fw-bold" onClick={()=>this.reset()}>
+              Reset
+            </div>
+        </div> 
           
       </div>
     );

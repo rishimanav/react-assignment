@@ -16,7 +16,7 @@ import Navbar from "./components/Navbar";
 //then we can pass on the modified state to other child components as well
 
 interface AppState {
-    username: string;
+    username: string|null;
   }
   
 export default class CRouter extends Component<{},AppState> {
@@ -30,8 +30,9 @@ export default class CRouter extends Component<{},AppState> {
     }
     
     //created a function to change the username property of the state
-    submitUsername(usernameEntry:string){
-        this.setState({username:"Rishi"})
+    submitUsername(usernameEntry:string|null){
+        console.log("submitUsername called");
+        this.setState({username:usernameEntry})
     }
 
     render() {

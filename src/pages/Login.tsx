@@ -3,13 +3,22 @@ import './Login.css';
 import { Link } from 'react-router-dom';
 
 interface LoginProps{
-  submitUsername:(i:string)=>void
+  submitUsername:(i:string|null)=>void
 }
 
 export default class Login extends React.Component<LoginProps> {
 
-  pushNameChanges(usernameEntry:string){
-    this.props.submitUsername(usernameEntry);
+  //gets the username from the username input field
+  // getUsername(val:string){
+
+  // }
+
+  pushNameChanges(){
+    //HTMLElement does not have a property called value
+    //The abpve error is raised as in TypeScript HTMLElement does not have a property called value
+    //For input fields it has HTMLInputElement, which has value property
+    const usernameEntry=(document.getElementById('username_input') as HTMLInputElement);
+    this.props.submitUsername(usernameEntry.value);
   }
 
   render() {
@@ -23,13 +32,15 @@ export default class Login extends React.Component<LoginProps> {
             {/* <!-- username input --> */}
             <div className="row">
               <div className="col-12 mb-3">
-                <label htmlFor="name" className="form-label">Username* :</label>
+                <label htmlFor="username" className="form-label text-white fw-bold">Username* :</label>
                 <input
-                  name="name"
-                  id="name"
+                  name="username"
+                  id="username_input"
                   type="text"
                   className="form-control"
-                  placeholder="Enter Name"/>
+                  placeholder="Enter Name"
+           
+                  />
               </div>
             </div>
 
@@ -37,7 +48,7 @@ export default class Login extends React.Component<LoginProps> {
             <div className="row">
               <div className="col-l2">
                 <div className="mb-3">
-                  <label htmlFor="password" className="form-label">Password*:</label>
+                  <label htmlFor="password" className="form-label text-white fw-bold">Password*:</label>
                   <input
                     type="password"
                     className="form-control"
@@ -51,7 +62,8 @@ export default class Login extends React.Component<LoginProps> {
             {/* Submit Button */}
             <div className="mt-3 text-end">
               <Link to="/home">
-                <button className="btn btn-danger rounded-pill fw-bold" onClick={()=>this.pushNameChanges("Rishi")}>Submit</button>
+                <button className="btn btn-danger rounded-pill fw-bold" 
+                onClick={()=>this.pushNameChanges()}>Submit</button>
               </Link>
             </div>
 

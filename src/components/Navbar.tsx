@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default class Navbar extends React.Component {
+
+interface NavbarProps{
+  username:string
+}
+
+export default class Navbar extends React.Component<NavbarProps>{
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -27,8 +32,8 @@ export default class Navbar extends React.Component {
               </ul>   
             </div>
             <div className="ms-auto d-flex justify-content-around">
-                <div className='text-white my-2 me-4'>Username</div>
-                <Link className="nav-link" to="/login">
+                <div className='text-white my-2 me-4'>{this.props.username}</div>
+                <Link className="nav-link" to="/">
                   <button className="btn btn-outline-danger">Logout</button>
                 </Link>
             </div>

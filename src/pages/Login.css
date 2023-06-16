@@ -5,3 +5,23 @@
     left:50%;
     transform: translate(-50%,-50%);
 }
+
+/* styles the login header */
+.login-header{
+    font-size: 20px;
+    font-style: italic;
+}
+
+/* style the labels for entries */
+.label-text{
+    font-style: italic;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* styles the login button */
+.login-button{
+    font-size:15px;
+    font-style:italic;
+    font-weight:600;
+}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ ChangeEvent } from 'react';
 import './Login.css';
 import { Link } from 'react-router-dom';
 
@@ -6,19 +6,52 @@ interface LoginProps{
   submitUsername:(i:string|null)=>void
 }
 
-export default class Login extends React.Component<LoginProps> {
+//created a state to make a POST 
+interface LoginState{
+  username:string,
+  password:string
+}
 
-  //gets the username from the username input field
-  // getUsername(val:string){
-
+export default class Login extends React.Component<LoginProps,LoginState> {
+  // constructor(props:LoginProps){
+  //   super(props);
+  //   this.setState({
+  //     username:"Test",
+  //     password:"XYZ"
+  //   })
   // }
+  //for handling changes in the username field
+  changeUNameHandler(event:ChangeEvent<HTMLInputElement>){
+    this.setState({username:event.target.value})
+  }
+
+  //for handling changes in the password field
+  changePassHandler(event:ChangeEvent<HTMLInputElement>){
+    this.setState({password:event.target.value})
+  }
 
   pushNameChanges(){
     //HTMLElement does not have a property called value
     //The abpve error is raised as in TypeScript HTMLElement does not have a property called value
     //For input fields it has HTMLInputElement, which has value property
-    const usernameEntry=(document.getElementById('username_input') as HTMLInputElement);
-    this.props.submitUsername(usernameEntry.value);
+    // const usernameEntry=(document.getElementById('username_input') as HTMLInputElement); //Older Code
+    const usernameEntry=this.state.username;
+    //stored the item on local storage
+    // localStorage.setItem('username',usernameEntry.value); //Older Code
+    localStorage.setItem('username',usernameEntry);
+    // this.props.submitUsername(usernameEntry.value); //Older Code
+    this.props.submitUsername(usernameEntry);
+
+    //POST API using fetch()
+    fetch("/testurl.com/login",{
+      method:'POST',
+      // headers:{
+      //   'Accept':'application/json',
+      //   'Content-Type':'application/json'
+      // },
+      //sending the username and pasword details via API as an object
+      body:JSON.stringify(this.state)
+    })
   }
 
   render() {
@@ -44,6 +77,7 @@ export default class Login extends React.Component<LoginProps> {
                       type="text"
                       className="form-control"
                       placeholder="Enter Name"
+                      onChange={(e)=>this.changeUNameHandler(e)}
               
                       />
                   </div>
@@ -59,7 +93,9 @@ export default class Login extends React.Component<LoginProps> {
                         className="form-control"
                         name="password"
                         id="password"
-                        placeholder="Password"/>
+                        placeholder="Password"
+                        onChange={(e)=>this.changePassHandler(e)}
+                        />
                     </div>
                   </div>
                 </div>

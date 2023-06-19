@@ -32,7 +32,8 @@ export default class Navbar extends React.Component<NavbarProps>{
               </ul>   
             </div>
             <div className="ms-auto d-flex justify-content-around">
-                <div className='text-white my-2 me-4'>{this.props.username}</div>
+                {/* <div className='text-white my-2 me-4'>{this.props.username}</div> */}
+                <div className='text-white my-2 me-4'>{localStorage.getItem("username")}</div>
                 <Link className="nav-link" to="/">
                   <button className="btn btn-outline-danger">Logout</button>
                 </Link>

@@ -1,17 +1,60 @@
 import React, { Component } from "react";
 import "./SidebarItem.css";
 
-export default class SidebarItem extends Component {
+interface itemState{
+  pressed:boolean
+}
+
+interface itemProps{
+  itemTitle:string; // item name goes
+  itemChildren:any; //item children(if any) goes here
+}
+
+export default class SidebarItem extends Component<itemProps,itemState> {
+  constructor(props:itemProps){
+    super(props);
+    this.state={
+      pressed:false
+    }
+  }
+
+  invertpressed(){
+    this.setState({
+      pressed:!this.state.pressed
+    })
+  }
+
+
   render() {
-    return (
-      <div className="sidebar-item rounded p-2 d-flex gap-2">
-        <div className="sidebar-title">
-          <i className="bi-house-fill"></i>
+    // if the item has children
+    if(this.props.itemChildren){
+      return(
+        <div className="sidebar-item">
+          <div className="sidebar-item-title rounded p-2 d-flex gap-2" onClick={()=>this.invertpressed()}>
+            <i className="bi-house-fill"></i>
+            <span className="">{this.props.itemTitle}</span>
+          </div>
+          
+          <div className={this.state.pressed?"sidebar-item-content-open":"sidebar-item-content-closed"}>
+            {this.props.itemChildren.map((value:any)=><SidebarItem itemTitle={value.current} itemChildren={value.children}/>)}
+          </div>
         </div>
-        <div>
-          <span className="">Home</span>
+      );
+    }
+
+    //if the item has no children
+    else{
+      return(
+        <div className="sidebar-item">
+          <div className="sidebar-item-title rounded p-2 d-flex gap-2">
+            <i className="bi-house-fill"></i>
+            <span className="">{this.props.itemTitle}</span>
+          </div>
         </div>
-      </div>
-    );
+      );           
+    }
+    
+        
   }
 }
+

@@ -13,13 +13,13 @@ interface LoginState{
 }
 
 export default class Login extends React.Component<LoginProps,LoginState> {
-  // constructor(props:LoginProps){
-  //   super(props);
-  //   this.setState({
-  //     username:"Test",
-  //     password:"XYZ"
-  //   })
-  // }
+  constructor(props:LoginProps){
+    super(props);
+    this.setState({
+      username:"Test",
+      password:"XYZ"
+    })
+  }
   //for handling changes in the username field
   changeUNameHandler(event:ChangeEvent<HTMLInputElement>){
     this.setState({username:event.target.value})
@@ -43,12 +43,12 @@ export default class Login extends React.Component<LoginProps,LoginState> {
     this.props.submitUsername(usernameEntry);
 
     //POST API using fetch()
-    fetch("/testurl.com/login",{
+    fetch("react-assignment/testurl.com/login",{
       method:'POST',
-      // headers:{
-      //   'Accept':'application/json',
-      //   'Content-Type':'application/json'
-      // },
+      headers:{
+        'Accept':'application/json',
+        'Content-Type':'application/json'
+      },
       //sending the username and pasword details via API as an object
       body:JSON.stringify(this.state)
     })

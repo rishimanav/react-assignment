@@ -34,12 +34,12 @@ export default class Contact extends React.Component<{},ContactState> {
     console.log(this.state);
 
     //POST API using fetch()
-    fetch("/testurl.com/contactme",{
+    fetch("testurl.com/contactme",{
       method:'POST',
-      // headers:{
-      //   'Accept':'application/json',
-      //   'Content-Type':'application/json'
-      // },
+      headers:{
+        'Accept':'application/json',
+        'Content-Type':'application/json'
+      },
       //passsing contact form details via API as an object
       body:JSON.stringify(this.state)
     })

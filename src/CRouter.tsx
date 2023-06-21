@@ -7,6 +7,8 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Game from "./pages/Game";
 import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import Task4 from "./pages/Task4";
 
 
 //inorder to change the parent state, we must pass the set state function
@@ -39,7 +41,7 @@ export default class CRouter extends Component<{},AppState> {
         return (
             <Router>
                 <Routes>
-                    {/* passed the function that alters the state of the parent element into Login */}
+                    {/* passed the function that alters the state of the parent element into Login as props*/}
                     <Route path="/" element={<Login submitUsername={this.submitUsername} />}></Route>
 
                     {/* passed the modified value to all the Navbar Components */}
@@ -47,6 +49,7 @@ export default class CRouter extends Component<{},AppState> {
                     <Route path="/game" element={<><Navbar username={this.state.username}/><Game /></>}></Route>
                     <Route path="/about" element={<><Navbar username={this.state.username}/><About /></>}></Route>
                     <Route path="/contact" element={<><Navbar username={this.state.username}/><Contact /></>}></Route>
+                    <Route path="/task4" element={<><Navbar username={this.state.username}/><Task4 /></>}></Route>
                 </Routes>
             </Router>
         );

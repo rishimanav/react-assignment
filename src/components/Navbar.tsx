@@ -29,6 +29,9 @@ export default class Navbar extends React.Component<NavbarProps>{
                 <li className="nav-item">
                     <Link className="nav-link" to="/game">Game</Link>
                 </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/task4">Task4</Link>
+                </li>
               </ul>   
             </div>
             <div className="ms-auto d-flex justify-content-around">

@@ -1,0 +1,8 @@
+.sidebar{
+    padding:10px;
+    flex-shrink: 0;
+    overflow:auto;
+    height:80vh;
+    font-size: 14px;
+}
+

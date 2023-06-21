@@ -30,7 +30,7 @@ export default class Navbar extends React.Component<NavbarProps>{
                     <Link className="nav-link" to="/game">Game</Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/task4">Task4</Link>
+                    <Link className="nav-link" to="/task4">Task 4</Link>
                 </li>
               </ul>   
             </div>

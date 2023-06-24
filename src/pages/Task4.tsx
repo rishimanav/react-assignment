@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import Sidebar from '../components/Sidebar'
+import React, { Component } from 'react';
+import Sidebar2 from '../components/Sidebar2';
+import Sidebar from '../components/Sidebar';
 
 export default class Task4 extends Component {
   render() {

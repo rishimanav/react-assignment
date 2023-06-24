@@ -3,6 +3,7 @@ import './Login.css';
 import { Link } from 'react-router-dom';
 
 interface LoginProps{
+  //callback function that changes the username in CRouter
   submitUsername:(i:string|null)=>void
 }
 
@@ -15,10 +16,10 @@ interface LoginState{
 export default class Login extends React.Component<LoginProps,LoginState> {
   constructor(props:LoginProps){
     super(props);
-    this.setState({
+    this.state={
       username:"Test",
       password:"XYZ"
-    })
+    }
   }
   //for handling changes in the username field
   changeUNameHandler(event:ChangeEvent<HTMLInputElement>){

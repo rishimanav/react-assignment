@@ -3,7 +3,6 @@ import "./SidebarItem.css";
 
 interface itemState{
   pressed:boolean
-  goAhead:boolean
 }
 
 interface itemProps{
@@ -16,7 +15,6 @@ export default class SidebarItem extends Component<itemProps,itemState> {
     super(props);
     this.state={
       pressed:true,
-      goAhead:false
     }
   }
 
@@ -37,6 +35,7 @@ export default class SidebarItem extends Component<itemProps,itemState> {
             <div className="sidebar-item-title rounded p-2 d-flex gap-2" onClick={()=>this.invertpressed()}>
               <i className="bi-house-fill"></i>
               <span className="">{this.props.itemTitle}</span>
+              
             </div>
             
             <div className={this.state.pressed?"sidebar-item-content-open":"sidebar-item-content-closed"}>

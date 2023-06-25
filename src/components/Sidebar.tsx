@@ -3,8 +3,6 @@ import "./Sidebar.css";
 import SidebarItem from "./SidebarItem";
 import items from "../sidebar.json";
 
-
-
 //sidebarState holds stateItems
 interface sidebarState {
   stateItems: any,
@@ -16,13 +14,12 @@ export default class Sidebar extends Component<{}, sidebarState> {
   //filled the json data object inside the jsonData variable
   jsonData=items;
 
-  constructor(props: {}) {
-    super(props);
-    this.state = {
+
+  state = {
       stateItems: items,
       search:""
     };
-  }
+  
 
   //resets the state after search
   // resetSearch(){
@@ -42,23 +39,36 @@ export default class Sidebar extends Component<{}, sidebarState> {
 
 
   //searches the tree for the given search string
-  searchTree = (items:any, search:string) => {
+  searchTree = (items:any, search:string):any => {
+
     return items.filter((item:any) => {
-      if (item.current.includes(search)) {
+      //if the item does not have any children and matches the search
+      if (item.current.includes(search) && (item.children==undefined)) {
+        console.log("Condition-1 is true");
         return true;
-      } 
-      else if (item.children) {
-        item.children = this.searchTree(item.children, search);
       }
-      return false;
+
+      //if the item matches the search and has children
+      else if (item.current.includes(search) && (item.children!=undefined)) {
+        console.log("Required condition")
+        item.children = this.searchTree(item.children, search);
+        return true;
+      }
+      //if the item does not match the search but has children 
+      else if (item.children){
+        console.log("the item does not match, checking the children")
+        item.children = this.searchTree(item.children,search);
+      }
+
+      //terminates if the leaf node does not match the search
+      else{
+        console.log("leaf node does not match");
+        return false;
+      }
+      
     });
   };
 
-  updateSearch(event: ChangeEvent<HTMLInputElement>) {
-    this.setState({
-      search: event.target.value,
-    });
-  }
 
   render() {
     const {stateItems} = this.state;

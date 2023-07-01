@@ -17,7 +17,7 @@ export default class Login extends React.Component<LoginProps,LoginState> {
   constructor(props:LoginProps){
     super(props);
     this.state={
-      username:"Test",
+      username:"Test User",
       password:"XYZ"
     }
   }
